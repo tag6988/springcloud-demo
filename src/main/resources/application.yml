@@ -1,0 +1,35 @@
+#spring核心
+spring:
+  application:
+    # 服务名称
+    name: eureka-server1
+  # 安全参数配置
+  security:
+    user:
+      name: api
+      password: node
+      roles: SERVICE_NODE
+#服务器配置
+server:
+  port: 8000
+#eureka注册中心
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  #服务端配置
+  server:
+    enable-self-preservation: false
+  #客户端配置
+  client:
+    # 是否把自己作为服务注册到其他服务注册中心
+    register-with-eureka: false
+    # 是否从其他的服务中心同步服务列表
+    fetch-registry: false
+    #开启自我保护模式
+    enable-self-preservation: false
+    #清理无效节点,默认60*1000毫秒,即60秒
+    eviction-interval-timer-in-ms: 10000
+    #Eureka Server在启动的时候会创建一个定时任务，默认每隔一段时间（默认为60秒）将当前清单中超时（默认为90秒）没有续约的服务剔除出去。
+    #注册中心url
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
